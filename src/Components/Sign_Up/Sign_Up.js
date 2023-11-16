@@ -56,7 +56,7 @@ const Sign_Up = () => {
       <div className="signup-grid">
         <div className="signup-form">
           <form method="POST" onSubmit={register}>
-            <div className="form-group">
+            {/* <div className="form-group">
               <label htmlFor="email">Email</label>
               <input
                 value={email}
@@ -73,7 +73,49 @@ const Sign_Up = () => {
                   {showerr}
                 </div>
               )}
+            </div> */}
+
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input
+                value={name}
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+                name="name"
+                id="name"
+                className="form-control"
+                placeholder="Enter your name"
+                aria-describedby="helpId"
+              />
             </div>
+
+            
+            <div className="form-group">
+              <label htmlFor="phone">Phone</label>
+              <input
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                type="tel"
+                name="phone"
+                id="phone"
+                className="form-control"
+                placeholder="Enter your phone number"
+                aria-describedby="helpId"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                name="password"
+                id="password"
+                className="form-control"
+                placeholder="Enter your password"
+                aria-describedby="helpId"
+              />
+            </div>
+
             {/* //apply logic here for other elements such as name, phone and
             password to take user information */}
           </form>

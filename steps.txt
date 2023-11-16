@@ -3,14 +3,30 @@ cd <app-name>
 git init
 git config --global user.email "tawfikalkady@gmail.com"
 git config --global user.name "tawfikalkady"
+git add --all
+git commit -m "initial commit"
+git remote add origin2 new react repository
+git push origin2
 
+2. Open a new terminal in the lab environment and navigate to the server folder using cd server inside the React app folder.
+3. Then, run npm install to install all the dependencies required for backend connectivity
+go to > 15 Hands-on Lab Set Up the React Project with Backend Connectivity
+node index.
 
+npm i 
+npm audit fix --force
 
+npm i react-router-dom
 
+npm i reactjs-popup
 
+npm install
 
+node index
 
+npm start
 
+npm i react-router-dom
 
 
 
