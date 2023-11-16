@@ -1,48 +1,49 @@
-import React, { useEffect } from 'react';
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import BookingConsultation from "./Components/BookingConsultation";
+import ReviewForm from "./Components/ReviewForm/ReviewForm"
+import Layout from "./Components/LandingPage/LandingPage";
+import Login from "./Components/Login/Login";
+import SignUp from "./Components/Sign_Up/Sign_Up";
+import Root from "./Page/Root";
+import ProfileCard from "./Components/ProfileCard/ProfileCard"
+import ReportsLayout from "./Components/ReportsLayout/ReportsLayout"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+export default function App() {
+  const routers = createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      children: [
+        { index: true, element: <Layout /> },
+        {
+          path: "signup",
+          element: <SignUp />,
+        },
+        {
+          path: "login",
+          element: <Login />,
+        },
+        {
+          path: "instant-consultation",
+          element: <BookingConsultation />,
+        },
+        {
+          path: "reviews",
+          element: <ReviewForm />
+        },
+        {
+          path: "profile",
+          element: <ProfileCard />
+        },
+        {
+            path: "report",
+            element: <ReportsLayout />
+          },
+      ],
+    },
+  ]);
 
-import Navbar from './Components/Navbar/Navbar';
-import LandingPage from './Components/Landing_Page/LandingPage';
-import InstantConsultation from './Instant Consultation/InstantConsultation';
-import Notification from './Components/Notification/Notification';
-import GiveReviews from './Components/ReviewForm/ReviewForm';
-// import SignUp from './Components/Sign_Up/Sign_Up';
-
-function App() {
-
-  return (
-    <div className="App">
-        <BrowserRouter>
-          <Navbar/>
-          <LandingPage/>
-
-          {/* <Route path="/" element={<LandingPage/>}/> */}
-          {/* <SignUp/> */}
-
-          {/* <InstantConsultation/> */}
-
-          {/* <Route path="./Instant Consultation/InstantConsultation" element={<InstantConsultation />} /> */}
-
-              {/* <Routes>
-              </Routes> */}
-
-          <Notification>
-              <Routes>
-                {/* <Route path="/login" element={<Login />}/>
-                <Route path="/signup" element={<SignUp />}/> */}
-                <Route path="/instant-consultation" element={<InstantConsultation />} />
-                <Route path="<component_route>" element={<component_name/>}/>
-                 {/* /> */}
-                 {/* //replace the component_route with the component path  and component_name with the component name as imported in the **App.js file**.  */}
-              </Routes>
-          </Notification>
-          <GiveReviews/>
-
-        </BrowserRouter>
-       
-    </div>
-  );
+  return <RouterProvider router={routers} />;
 }
-
-export default App;

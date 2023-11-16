@@ -1,58 +1,51 @@
+import {Table, Button} from 'react-bootstrap';
+import "reactjs-popup/dist/index.css";
+import GiveReviews from './GiveReviews';
 import React, { useState } from 'react';
-function GiveReviews() {
-  const [showForm, setShowForm] = useState(false);
-  const [submittedMessage, setSubmittedMessage] = useState('');
-  const [showWarning, setShowWarning] = useState(false);
-  const [formData, setFormData] = useState({
-        name: '',
-        review: '',
-        rating: 0
-      });
-  const handleButtonClick = () => {
-    setShowForm(true);
-  };
-  const handleChange = (e) => {
-    setFormData(e.target.value);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmittedMessage(formData);
-    setFormData('');
-        if (formData.name && formData.review && formData.rating > 0) {
-          setShowWarning(false);
-        } else {
-          setShowWarning(true);
-        }
-  };
-  return (
-    <div>
-      <h2>Form with Message</h2>
-      {!showForm ? (
-        <button onClick={handleButtonClick}>Open Form</button>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <h2>Give Your Feedback</h2>
-               {showWarning && <p className="warning">Please fill out all fields.</p>}
-                <div>
-                   <label htmlFor="name">Name:</label>
-                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
-             </div>
-                <div>
-                 <label htmlFor="review">Review:</label>
-                  <textarea id="review" name="review" value={formData.review} onChange={handleChange} />
-                 </div>
-                 <button type="submit">Submit</button>
 
-                 
-               </form>
-      )}
-      {submittedMessage && (
-        <div>
-          <h3>Submitted Message:</h3>
-          <p>{submittedMessage}</p>
-        </div>
-      )}
+export default function ReviewForm() {
+  const [reviews, setReviews] = useState("")
+
+  const handleReview = function (review) {
+    setReviews(review);
+  }
+  console.log(reviews)
+
+  return (
+    <div style={{margin: "auto", maxWidth: "800px", marginTop: "10%"}}>
+      <h2 style={{marginBottom: "10px"}}>Reviews</h2>
+      <Table responsive>
+        <thead>
+          <tr>
+            <th>Serial Number</th>
+            <th>Doctor Name</th>
+            <th>Doctor Speciality</th>
+            <th>Provide Feedback</th>
+            <th>Review Given</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Dr. john Doe</td>
+            <td>Cardiology</td>
+            <td>
+              {<GiveReviews onHandleReview={handleReview} />}
+            </td>
+            <td>review</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Dr. Jane Smith</td>
+            <td>Dermatology</td>
+            <td>
+              {/* {<GiveReviews onHandleReview={handleReview} />} */}
+              <Button variant="primary" size='sm'>Click Here</Button>
+              </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </Table>
     </div>
-  );
+  )
 }
-export default GiveReviews;
